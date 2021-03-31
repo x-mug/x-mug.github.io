@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="color-scheme" content="light dark">
+
+    
+
+    <meta name="author" content="xmug">
+    <meta name="description" content="Game101 线性代数学习笔记1. 向量的点乘标准定义$$ \vec{a} \cdot \vec{b} = ||\vec{a}|| ||\vec{b}|| \cos\theta $$
+一些公式  $$ \cos \theta = \frac { \vec{a} \vec{b} }{ ||\vec{a}|| ||\vec{b}|| } $$
+  $$ \cos \theta = \hat{a} \hat{b} $$ (hint: $\hat{a}$ 和 $\hat{b}$ 代表单位向量。且单位向量可以是任意向量，方向不必垂直)
+  二维 $$ \vec{a} \cdot \vec{b} = \begin{pmatrix} x_a \ y_a \end{pmatrix} \cdot \begin{pmatrix} x_b \ y_b \end{pmatrix} = x_a x_b &#43; y_a y_b $$ (hint: $x$与$y$在笛卡尔坐标系中互相垂直，因此$\cos\theta=\cos\frac{\pi}{2}=0$)">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Games101_ReviewOfLinearAlgebra"/>
+<meta name="twitter:description" content="Game101 线性代数学习笔记1. 向量的点乘标准定义$$ \vec{a} \cdot \vec{b} = ||\vec{a}|| ||\vec{b}|| \cos\theta $$
+一些公式  $$ \cos \theta = \frac { \vec{a} \vec{b} }{ ||\vec{a}|| ||\vec{b}|| } $$
+  $$ \cos \theta = \hat{a} \hat{b} $$ (hint: $\hat{a}$ 和 $\hat{b}$ 代表单位向量。且单位向量可以是任意向量，方向不必垂直)
+  二维 $$ \vec{a} \cdot \vec{b} = \begin{pmatrix} x_a \ y_a \end{pmatrix} \cdot \begin{pmatrix} x_b \ y_b \end{pmatrix} = x_a x_b &#43; y_a y_b $$ (hint: $x$与$y$在笛卡尔坐标系中互相垂直，因此$\cos\theta=\cos\frac{\pi}{2}=0$)"/>
+
+    <meta property="og:title" content="Games101_ReviewOfLinearAlgebra" />
+<meta property="og:description" content="Game101 线性代数学习笔记1. 向量的点乘标准定义$$ \vec{a} \cdot \vec{b} = ||\vec{a}|| ||\vec{b}|| \cos\theta $$
+一些公式  $$ \cos \theta = \frac { \vec{a} \vec{b} }{ ||\vec{a}|| ||\vec{b}|| } $$
+  $$ \cos \theta = \hat{a} \hat{b} $$ (hint: $\hat{a}$ 和 $\hat{b}$ 代表单位向量。且单位向量可以是任意向量，方向不必垂直)
+  二维 $$ \vec{a} \cdot \vec{b} = \begin{pmatrix} x_a \ y_a \end{pmatrix} \cdot \begin{pmatrix} x_b \ y_b \end{pmatrix} = x_a x_b &#43; y_a y_b $$ (hint: $x$与$y$在笛卡尔坐标系中互相垂直，因此$\cos\theta=\cos\frac{\pi}{2}=0$)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xmug.tk/posts/games101_01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-31T14:42:41&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-31T14:42:41&#43;08:00" />
+
+
+
+    <title>
+  Games101_ReviewOfLinearAlgebra · xmug&#39;s blog
+</title>
+
+    
+      <link rel="canonical" href="https://xmug.tk/posts/games101_01/">
+    
+
+    <link rel="preload" href="https://xmug.tk/fonts/forkawesome-webfont.woff2?v=1.1.7" as="font" type="font/woff2" crossorigin>
+
+    
+      
+      
+      <link rel="stylesheet" href="https://xmug.tk/css/coder.min.eb7743f94930acfd17146aecc1f80e86fe35b3e451f2ec0c98485f9c4d962f34.css" integrity="sha256-63dD&#43;UkwrP0XFGrswfgOhv41s&#43;RR8uwMmEhfnE2WLzQ=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://xmug.tk/css/coder-dark.min.dde8a61eb31a32353b4baf3d9113f03c4ea2a8ca9bb736f59ca2d2b2cb664f0b.css" integrity="sha256-3eimHrMaMjU7S689kRPwPE6iqMqbtzb1nKLSsstmTws=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://xmug.tk/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://xmug.tk/images/favicon-16x16.png" sizes="16x16">
+
+    <link rel="apple-touch-icon" href="https://xmug.tk/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://xmug.tk/images/apple-touch-icon.png">
+
+    
+
+    <meta name="generator" content="Hugo 0.82.0" />
+  </head>
+
+  
+  
+    
+  
+  <body class="preload-transitions colorscheme-auto"
+        onload=""
+  >
+    
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://xmug.tk/">
+      xmug&#39;s blog
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/contact/">Contact me</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://xmug.tk/posts/games101_01/">
+              Games101_ReviewOfLinearAlgebra
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime='2021-03-31T14:42:41&#43;08:00'>
+                March 31, 2021
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              One-minute read
+            </span>
+          </div>
+          <div class="authors">
+    <i class="fa fa-user" aria-hidden="true"></i>
+      <a href="https://xmug.tk/authors/yanlingqi/">YanLingqi</a></div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+        <h1 id="game101-线性代数学习笔记">
+  Game101 线性代数学习笔记
+  <a class="heading-link" href="#game101-%e7%ba%bf%e6%80%a7%e4%bb%a3%e6%95%b0%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h1>
+<h2 id="1-向量的点乘">
+  1. 向量的点乘
+  <a class="heading-link" href="#1-%e5%90%91%e9%87%8f%e7%9a%84%e7%82%b9%e4%b9%98">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<h3 id="标准定义">
+  标准定义
+  <a class="heading-link" href="#%e6%a0%87%e5%87%86%e5%ae%9a%e4%b9%89">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>$$
+\vec{a} \cdot \vec{b} = ||\vec{a}|| ||\vec{b}|| \cos\theta
+$$</p>
+<h3 id="一些公式">
+  一些公式
+  <a class="heading-link" href="#%e4%b8%80%e4%ba%9b%e5%85%ac%e5%bc%8f">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<ul>
+<li>
+<p>$$
+\cos \theta = \frac {
+\vec{a} \vec{b}
+}{
+||\vec{a}|| ||\vec{b}||
+}
+$$</p>
+</li>
+<li>
+<p>$$
+\cos \theta  = \hat{a} \hat{b}
+$$
+(hint: $\hat{a}$ 和 $\hat{b}$ 代表单位向量。且单位向量可以是任意向量，方向不必垂直)</p>
+</li>
+<li>
+<p><strong>二维</strong>
+$$
+\vec{a} \cdot \vec{b} = 
+\begin{pmatrix}
+x_a \ y_a 
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+x_b \ y_b 
+\end{pmatrix}
+= x_a x_b + y_a y_b
+$$
+(hint: $x$与$y$在笛卡尔坐标系中互相垂直，因此$\cos\theta=\cos\frac{\pi}{2}=0$)</p>
+<p><strong>同理，三维中</strong>
+$$
+\vec{a} \cdot \vec{b} = 
+\begin{pmatrix}
+x_a \ y_a \ z_a
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+x_b \ y_b \ z_b
+\end{pmatrix}
+= x_a x_b + y_a y_b + z_a z_b
+$$</p>
+</li>
+</ul>
+<h3 id="由此得来的一些性质">
+  由此得来的一些性质
+  <a class="heading-link" href="#%e7%94%b1%e6%ad%a4%e5%be%97%e6%9d%a5%e7%9a%84%e4%b8%80%e4%ba%9b%e6%80%a7%e8%b4%a8">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<ul>
+<li><strong>向量投影</strong></li>
+<li><strong>获取向量夹角</strong></li>
+<li><strong>获取向量投影的垂直向量</strong>(非法向量)</li>
+</ul>
+<h3 id="延申使用在计算机图形学上的应用">
+  延申使用（在计算机图形学上的应用）
+  <a class="heading-link" href="#%e5%bb%b6%e7%94%b3%e4%bd%bf%e7%94%a8%e5%9c%a8%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9b%be%e5%bd%a2%e5%ad%a6%e4%b8%8a%e7%9a%84%e5%ba%94%e7%94%a8">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<ol>
+<li>判断向量前后</li>
+<li>判断向量距离（进行碰撞检测，范围检测）</li>
+</ol>
+<h2 id="2-向量的叉乘">
+  2. 向量的叉乘
+  <a class="heading-link" href="#2-%e5%90%91%e9%87%8f%e7%9a%84%e5%8f%89%e4%b9%98">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "xmug" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Enter a text here.</p>
+      
+      
+        ©
+        
+          2019 -
+        
+        2021
+         xmug 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+
+    </main>
+
+    
+      
+      <script src="https://xmug.tk/js/coder.min.235666b114443867d43eeb5799d51f6252965e5163f338285e113fa381d3d27e.js" integrity="sha256-I1ZmsRREOGfUPutXmdUfYlKWXlFj8zgoXhE/o4HT0n4="></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </body>
+
+</html>
