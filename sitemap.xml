@@ -2,10 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://xmug.tk/authors/</loc>
-    <lastmod>2021-04-05T23:33:08+08:00</lastmod>
-  </url><url>
     <loc>https://xmug.tk/categories/</loc>
+    <lastmod>2021-04-05T23:47:59+08:00</lastmod>
+  </url><url>
+    <loc>https://xmug.tk/collections/</loc>
+    <lastmod>2021-04-05T23:47:59+08:00</lastmod>
+  </url><url>
+    <loc>https://xmug.tk/categories/collections/</loc>
+    <lastmod>2021-04-05T23:47:59+08:00</lastmod>
+  </url><url>
+    <loc>https://xmug.tk/collections/free_3danimation/</loc>
+    <lastmod>2021-04-05T23:47:59+08:00</lastmod>
+  </url><url>
+    <loc>https://xmug.tk/</loc>
+    <lastmod>2021-04-05T23:47:59+08:00</lastmod>
+  </url><url>
+    <loc>https://xmug.tk/authors/</loc>
     <lastmod>2021-04-05T23:33:08+08:00</lastmod>
   </url><url>
     <loc>https://xmug.tk/posts/</loc>
@@ -25,15 +37,6 @@
   </url><url>
     <loc>https://xmug.tk/authors/xmug/</loc>
     <lastmod>2021-04-05T23:33:08+08:00</lastmod>
-  </url><url>
-    <loc>https://xmug.tk/</loc>
-    <lastmod>2021-04-05T23:33:08+08:00</lastmod>
-  </url><url>
-    <loc>https://xmug.tk/collections/</loc>
-    <lastmod>2021-04-02T20:47:00+08:00</lastmod>
-  </url><url>
-    <loc>https://xmug.tk/categories/collections/</loc>
-    <lastmod>2021-04-02T20:47:00+08:00</lastmod>
   </url><url>
     <loc>https://xmug.tk/collections/free_pdf/</loc>
     <lastmod>2021-04-02T20:47:00+08:00</lastmod>
