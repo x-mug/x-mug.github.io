@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta name="color-scheme" content="light dark">
+
+    
+
+    <meta name="author" content="xmug">
+    <meta name="description" content="先贴个代码，明天再写，咕咕咕咕using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { /// &lt;summary&gt;  /// Public 变量  /// &lt;/summary&gt;  public float moveSpeed; public float jumpSpeed; public float mouseSensitivity; /// &lt;summary&gt;  /// private 变量  /// &lt;/summary&gt;  // 这里涉及三维向量  private Vector3 moveInput; // 这里涉及四元数与欧拉角  private Vector3 rotateInput; // 这是一个刚体组件  private Rigidbody rb; private bool isGrounded; // 这是我们要用的相机（其实可以不用，后续会解释）  private Camera cam; private void Start() { // 获得所需要的组件  rb = this.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Unity_Movement"/>
+<meta name="twitter:description" content="先贴个代码，明天再写，咕咕咕咕using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { /// &lt;summary&gt;  /// Public 变量  /// &lt;/summary&gt;  public float moveSpeed; public float jumpSpeed; public float mouseSensitivity; /// &lt;summary&gt;  /// private 变量  /// &lt;/summary&gt;  // 这里涉及三维向量  private Vector3 moveInput; // 这里涉及四元数与欧拉角  private Vector3 rotateInput; // 这是一个刚体组件  private Rigidbody rb; private bool isGrounded; // 这是我们要用的相机（其实可以不用，后续会解释）  private Camera cam; private void Start() { // 获得所需要的组件  rb = this."/>
+
+    <meta property="og:title" content="Unity_Movement" />
+<meta property="og:description" content="先贴个代码，明天再写，咕咕咕咕using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { /// &lt;summary&gt;  /// Public 变量  /// &lt;/summary&gt;  public float moveSpeed; public float jumpSpeed; public float mouseSensitivity; /// &lt;summary&gt;  /// private 变量  /// &lt;/summary&gt;  // 这里涉及三维向量  private Vector3 moveInput; // 这里涉及四元数与欧拉角  private Vector3 rotateInput; // 这是一个刚体组件  private Rigidbody rb; private bool isGrounded; // 这是我们要用的相机（其实可以不用，后续会解释）  private Camera cam; private void Start() { // 获得所需要的组件  rb = this." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xmug.tk/posts/unitystarter/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-05T23:33:08&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-05T23:33:08&#43;08:00" />
+
+
+
+    <title>
+  Unity_Movement · xmug&#39;s blog
+</title>
+
+    
+      <link rel="canonical" href="https://xmug.tk/posts/unitystarter/">
+    
+
+    <link rel="preload" href="https://xmug.tk/fonts/forkawesome-webfont.woff2?v=1.1.7" as="font" type="font/woff2" crossorigin>
+
+    
+      
+      
+      <link rel="stylesheet" href="https://xmug.tk/css/coder.min.eb7743f94930acfd17146aecc1f80e86fe35b3e451f2ec0c98485f9c4d962f34.css" integrity="sha256-63dD&#43;UkwrP0XFGrswfgOhv41s&#43;RR8uwMmEhfnE2WLzQ=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://xmug.tk/css/coder-dark.min.dde8a61eb31a32353b4baf3d9113f03c4ea2a8ca9bb736f59ca2d2b2cb664f0b.css" integrity="sha256-3eimHrMaMjU7S689kRPwPE6iqMqbtzb1nKLSsstmTws=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://xmug.tk/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://xmug.tk/img/favicon-16x16.png" sizes="16x16">
+
+    <link rel="apple-touch-icon" href="https://xmug.tk/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://xmug.tk/images/apple-touch-icon.png">
+
+    
+
+    <meta name="generator" content="Hugo 0.82.0" />
+  </head>
+
+  
+  
+    
+  
+  <body class="preload-transitions colorscheme-auto"
+        onload=""
+  >
+    
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://xmug.tk/">
+      xmug&#39;s blog
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/about/">封页</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/posts/">日记本</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/categories/">印章簿</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/projects/">远足目的地</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://xmug.tk/collections/">宝藏探险</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://xmug.tk/posts/unitystarter/">
+              Unity_Movement
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime='2021-04-05T23:33:08&#43;08:00'>
+                April 5, 2021
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              阅读时间：1 分钟
+            </span>
+          </div>
+          <div class="authors">
+    <i class="fa fa-user" aria-hidden="true"></i>
+      <a href="https://xmug.tk/authors/xmug/">xmug</a></div>
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="https://xmug.tk/categories/unity/">Unity</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <a href="https://xmug.tk/tags/unitystarter/">UnityStarter</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <h1 id="先贴个代码明天再写咕咕咕咕">
+  先贴个代码，明天再写，咕咕咕咕
+  <a class="heading-link" href="#%e5%85%88%e8%b4%b4%e4%b8%aa%e4%bb%a3%e7%a0%81%e6%98%8e%e5%a4%a9%e5%86%8d%e5%86%99%e5%92%95%e5%92%95%e5%92%95%e5%92%95">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h1>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="font-weight:bold">using</span> <span style="font-weight:bold">System.Collections</span>;
+<span style="font-weight:bold">using</span> <span style="font-weight:bold">System.Collections.Generic</span>;
+<span style="font-weight:bold">using</span> <span style="font-weight:bold">UnityEngine</span>;
+
+<span style="font-weight:bold">public</span> <span style="font-weight:bold">class</span> <span style="font-weight:bold">PlayerController</span> : MonoBehaviour
+{
+    <span style="font-style:italic">/// &lt;summary&gt;
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">/// Public 变量
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">/// &lt;/summary&gt;
+</span><span style="font-style:italic"></span>
+    <span style="font-weight:bold">public</span> <span style="">float</span> moveSpeed;
+    <span style="font-weight:bold">public</span> <span style="">float</span> jumpSpeed;
+    <span style="font-weight:bold">public</span> <span style="">float</span> mouseSensitivity;
+
+
+    <span style="font-style:italic">/// &lt;summary&gt;
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">/// private 变量
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">/// &lt;/summary&gt;
+</span><span style="font-style:italic"></span>
+    <span style="font-style:italic">// 这里涉及三维向量
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">private</span> Vector3 moveInput;
+
+    <span style="font-style:italic">// 这里涉及四元数与欧拉角
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">private</span> Vector3 rotateInput;
+
+    <span style="font-style:italic">// 这是一个刚体组件
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">private</span> Rigidbody rb;
+    <span style="font-weight:bold">private</span> <span style="">bool</span> isGrounded;
+
+    <span style="font-style:italic">// 这是我们要用的相机（其实可以不用，后续会解释）
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">private</span> Camera cam;
+
+    <span style="font-weight:bold">private</span> <span style="font-weight:bold">void</span> Start()
+    {
+        <span style="font-style:italic">// 获得所需要的组件
+</span><span style="font-style:italic"></span>        rb = <span style="font-weight:bold">this</span>.GetComponent&lt;Rigidbody&gt;();
+
+        <span style="font-style:italic">// 初始化一些变量
+</span><span style="font-style:italic"></span>        moveInput = <span style="font-weight:bold">new</span> Vector3();
+        rotateInput = <span style="font-weight:bold">new</span> Vector3();
+    }
+
+    <span style="font-weight:bold">void</span> Update()
+    {
+        <span style="font-style:italic">// 输入获取
+</span><span style="font-style:italic"></span>        moveInput.Set(
+            Input.GetAxisRaw(<span style="font-style:italic">&#34;Horizontal&#34;</span>), <span style="font-style:italic">// x轴， 在左手笛卡尔坐标系中，代表左右
+</span><span style="font-style:italic"></span>            Input.GetAxisRaw(<span style="font-style:italic">&#34;Jump&#34;</span>),       <span style="font-style:italic">// y轴， 在左手笛卡尔坐标系中，代表上下
+</span><span style="font-style:italic"></span>            Input.GetAxisRaw(<span style="font-style:italic">&#34;Vertical&#34;</span>)    <span style="font-style:italic">// z轴， 在左手笛卡尔坐标系中，代表前后
+</span><span style="font-style:italic"></span>        );
+
+        <span style="font-style:italic">// 这里我们使用欧拉角转换为四元数的方式来简单使用
+</span><span style="font-style:italic"></span>        <span style="font-style:italic">// 关于四元数，这里有个很棒的视频可以帮助到你：https://www.bilibili.com/video/BV1SW411y7W1
+</span><span style="font-style:italic"></span>        rotateInput.Set(
+            Input.GetAxis(<span style="font-style:italic">&#34;Mouse Y&#34;</span>), <span style="font-style:italic">// x, 这里的x，即围绕笛卡尔坐标系的x轴旋转，因此关乎 上下 旋转
+</span><span style="font-style:italic"></span>            Input.GetAxis(<span style="font-style:italic">&#34;Mouse X&#34;</span>), <span style="font-style:italic">// y，这里的y，即围绕笛卡尔坐标系的y轴旋转，因此关乎 左右 旋转
+</span><span style="font-style:italic"></span>            0                         <span style="font-style:italic">// z，这里的z，即围绕笛卡尔坐标系的z轴旋转，因此关乎 偏转 旋转, 例如：吃鸡的偏头
+</span><span style="font-style:italic"></span>        );
+
+        <span style="font-style:italic">// 进行输入处理
+</span><span style="font-style:italic"></span>        moveInput.Set(
+            moveInput.x * moveSpeed,
+            moveInput.y * jumpSpeed != 0 ? moveInput.y * jumpSpeed : rb.velocity.y,
+            moveInput.z * moveSpeed
+        );
+
+        rotateInput.Set(
+            -1 * rotateInput.x * mouseSensitivity * Time.deltaTime,
+            rotateInput.y * mouseSensitivity * Time.deltaTime,
+            0
+        );
+
+        <span style="font-style:italic">// 输入应用
+</span><span style="font-style:italic"></span>        
+        <span style="font-style:italic">// 为刚体施加速度
+</span><span style="font-style:italic"></span>        rb.velocity =
+                <span style="font-weight:bold">this</span>.transform.right * moveInput.x +
+                <span style="font-weight:bold">this</span>.transform.up * moveInput.y +
+                <span style="font-weight:bold">this</span>.transform.forward * moveInput.z;
+        
+        <span style="font-style:italic">// 人物模型进行左右旋转
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">this</span>.transform.rotation = Quaternion.Euler(
+            <span style="font-weight:bold">this</span>.transform.rotation.eulerAngles.x,
+            <span style="font-weight:bold">this</span>.transform.rotation.eulerAngles.y + rotateInput.y,
+            <span style="font-weight:bold">this</span>.transform.rotation.eulerAngles.z
+        );
+
+        <span style="font-style:italic">// 单独相机进行上下旋转
+</span><span style="font-style:italic"></span>        Camera.main.transform.rotation = Quaternion.Euler(
+            Camera.main.transform.rotation.eulerAngles.x + rotateInput.x,
+            Camera.main.transform.rotation.eulerAngles.y,
+            Camera.main.transform.rotation.eulerAngles.z
+        );
+    }
+}
+
+</code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        <script src="https://utteranc.es/client.js"
+    repo= "x-mug/utterances"
+    issue-term="pathname"
+    label="comment"
+    theme="github-dark-orange"
+    crossorigin="anonymous"
+    async>
+  </script>
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+        ©
+        
+        2021
+         xmug 
+      
+      
+         · 
+        技术支持 <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+
+    </main>
+
+    
+      
+      <script src="https://xmug.tk/js/coder.min.235666b114443867d43eeb5799d51f6252965e5163f338285e113fa381d3d27e.js" integrity="sha256-I1ZmsRREOGfUPutXmdUfYlKWXlFj8zgoXhE/o4HT0n4="></script>
+    
+
+    
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5NBXHBP8N"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-L5NBXHBP8N', { 'anonymize_ip': false });
+}
+</script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </body>
+
+</html>

@@ -6,7 +6,16 @@
     <description>Recent content on xmug&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 02 Apr 2021 20:47:00 +0800</lastBuildDate><atom:link href="https://xmug.tk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Apr 2021 23:33:08 +0800</lastBuildDate><atom:link href="https://xmug.tk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity_Movement</title>
+      <link>https://xmug.tk/posts/unitystarter/</link>
+      <pubDate>Mon, 05 Apr 2021 23:33:08 +0800</pubDate>
+      
+      <guid>https://xmug.tk/posts/unitystarter/</guid>
+      <description>先贴个代码，明天再写，咕咕咕咕using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { /// &amp;lt;summary&amp;gt;  /// Public 变量  /// &amp;lt;/summary&amp;gt;  public float moveSpeed; public float jumpSpeed; public float mouseSensitivity; /// &amp;lt;summary&amp;gt;  /// private 变量  /// &amp;lt;/summary&amp;gt;  // 这里涉及三维向量  private Vector3 moveInput; // 这里涉及四元数与欧拉角  private Vector3 rotateInput; // 这是一个刚体组件  private Rigidbody rb; private bool isGrounded; // 这是我们要用的相机（其实可以不用，后续会解释）  private Camera cam; private void Start() { // 获得所需要的组件  rb = this.</description>
+    </item>
+    
     <item>
       <title>Free_PDF</title>
       <link>https://xmug.tk/collections/free_pdf/</link>
